@@ -214,14 +214,14 @@ class SimAnneal(object):
                     self.T *= self.alpha
                     m += 1
             # print(self.tour)
-            return self.tour,self.cur_tsp
+            return self.tour,self.cur_tsp,self.currentFitness
 
 #   Fungsi TSP untuk mereturn hasil tsp dalam 1 hari dan sisa tour untuk TSP hari selanjutnya
     def tsp(self):
         tsp = []
         rest = []
         if self.cur_tsp:
-            tour,tsp = self.Anneal()
+            tour,tsp,fitness = self.Anneal()
             nama_tsp = [x.name for x in tsp ]
             rest = [x for x in tour if x.name not in nama_tsp]
             waktu = self.tmatrix(tsp[len(tsp)-1],self.endNode)
@@ -237,4 +237,4 @@ class SimAnneal(object):
             if jam > 23:
                 jam -= 24
             self.endNode.dttime = datetime.time(jam,menit,detik)
-        return tsp,rest
+        return tsp,rest,fitness

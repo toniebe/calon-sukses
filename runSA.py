@@ -21,10 +21,11 @@ def main(tourid,idhotel,dwaktu,drating,dtarif):
     tmhotelfrom = db.TMHfrombyID(idhotel,tourid)
     tmhotelto = db.TMHtobyID(idhotel,tourid)
     i = 0
+    fitot = 0
 
     while i < 3 and tur:
         sa = SimAnneal(tour= tur, T = 15000, alpha = 0.99, stopping_T = 0.0001, timematrix= timematrix, tmhotelfrom= tmhotelfrom, tmhotelto= tmhotelto, hotel= hotel, drating=drating, dtarif=dtarif, dtime=dwaktu)
-        tsp,rest= sa.tsp()
+        tsp,rest, fitness= sa.tsp()
         tur = rest
         for node in tsp:
             tspperday[i].append(node._id)
@@ -32,17 +33,17 @@ def main(tourid,idhotel,dwaktu,drating,dtarif):
         waktuDatang[i].insert(0,str(hotel.dttime))
         waktuDatang[i].append(str(sa.endNode.dttime))
         hotel = copy.copy(sa.hotel)
-        # print("Fitness : ",fitness)
+        fitot += fitness
         i += 1
 
-
+    print("Fitness : ",fitot/2)
     end = time.time()
     print("running time: ",end-start)
     return tspperday,waktuDatang
 
 
 if __name__ == '__main__':
-    tsp,waktudatang = main([1,2,3,5,6,7,14,15,16,17,18,19,20,21,22,23,25,26,27,28],32,1,0,0)
-    # tsp,waktudatang = main([1,2,3,5,6,7],32,1,1,1)
+    # tsp,waktudatang = main([1,2,3,5,6,7,14,15,16,17,18,19,20,21,22,23,25,26,27,28],32,0,0,1)
+    tsp,waktudatang = main([1,2,3,5,6,7,14,15,16,17,18],32,1,0,0)
     print(tsp)
     print(waktudatang)

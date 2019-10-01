@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Apr 12 21:11:28 2017
-
-@author: mizannn
-"""
 from node import Node
 from timematrix import TimeMatrix
 from tourmanager import TourManager

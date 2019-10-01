@@ -67,7 +67,7 @@ if __name__ == '__main__':
     # for i in range(0,len(node)):                                                       # Testing line
     #     nodeUsed.append(node[i])                                                # Testing line
     #     tsp,waktudatang, fitness = main(nodeUsed,33,1,0,0)
-    tsp, waktudatang = main([1, 2, 3, 5, 6, 7, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 28], 33, 1, 0, 0)
+    tsp, waktudatang = main([1, 2, 3, 5, 6, 7, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 28], 33, 1, 1, 1)
     print(tsp)
     print(waktudatang)
     # print(fitness)
